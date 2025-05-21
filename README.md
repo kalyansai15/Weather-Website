@@ -12,10 +12,6 @@ This is a simple and visually appealing weather website built using **HTML**, **
 - JavaScript  
 - OpenWeatherMap API  
 
-## 📸 Screenshots  
-
-![Screenshot](images/screenshot.png)
-
 ## 📦 Features  
 - Get real-time weather updates  
 - Search weather by city name  
