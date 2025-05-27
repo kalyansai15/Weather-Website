@@ -2,29 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Webpage</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Web App</title>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
 <body>
     <div class="container">
-        <section class="main">
-            <section class="inputs">
-                <input type="text" placeholder="Enter Your City Name " id="cityinput">
-                <input type="submit" value="Submit" id="add">
-            </section>
-        
-
-            <section class="display">
-                <div class="wrapper">
-                    <h2 id="cityoutput"></h2>
-                    <p id="description"></p>
-                    <p id="temp"></p>
-                    <p id="wind"></p>
-                </div>
-            </section>
-        </section>
+      <div class="search_box"> 
+        <input type="text" placeholder="Enter a city name" id="city" value="VARANASI" autocomplete="off"/>
+        <button id="search"><ion-icon class="icon" name="search"></ion-icon></button>
+      </div>
+      <div id="show"></div>
     </div>
-    <script src="index.js"></script>
-</body>
+   <!---------------  SCRIPT  --------------------->
+   <script src="script.js"></script>  
+</body>   
 </html>
