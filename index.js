@@ -1,50 +1,43 @@
-var inputvalue = document.querySelector('#cityinput')
-var btn = document.querySelector('#add')
-var city = document.querySelector('#cityoutput')
-var descrip = document.querySelector('#description')
-var temp = document.querySelector('#temp')
-var wind = document.querySelector('#wind')
-var apikey = '6019a2e0b3eca9340e84508da64dafc1'
+let show = document.getElementById("show");
+let search = document.getElementById("search");
+let cityVal = document.getElementById("city");
 
-function conversion(val){
-    return (val - 273).toFixed(2)
-}
-window.onload = function() {
-    city.innerHTML = "Find weather details";
-}
-btn.addEventListener('click', function(){
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputvalue.value + '&appid=' + apikey)
-    .then(res => res.json())
-    .then(data => {
-        var nameval = data['name']
-        var descriptionVal = data['weather'][0]['description']
-        var temperature = data['main']['temp']
-        var windspeed = data['wind']['speed']
+//Make sure you have your own key.
+let key = "dfe376c684752e956dda710e1fe73024";
 
-        city.innerHTML = `Weather of <span>${nameval}</span>`
-        city.classList.remove("error-message");
-        temp.innerHTML = `Temperature: <span>${conversion(temperature)}°C</span>`
-        descrip.innerHTML = `Sky condition: <span>${descriptionVal}</span>`
-        wind.innerHTML = `Wind Speed: <span>${windspeed} m/s</span>`
-
-        inputvalue.value = ''
-
-    })
-    .catch(err => {
-    city.innerHTML = "City not found. Please try again!";
-    descrip.innerHTML = "";
-    temp.innerHTML = "";
-    wind.innerHTML = "";
-
-    // Reset input
-    inputvalue.value = '';
-})
-btn.addEventListener('click', getWeather);
-
-// Enter key event inside input field
-inputvalue.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        getWeather();
-    }
-});
-});
+let getWeather = () => {
+  let cityValue = cityVal.value;
+  if (cityValue.length == 0) {
+    show.innerHTML = `<h3 class="error">Please enter a city name</h3>`;
+  }
+  else {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${key}&units=metric`;
+    cityVal.value = "";
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        show.innerHTML = `
+        <h2>${data.name}, ${data.sys.country}</h2>
+        <h4 class="weather">${data.weather[0].main}</h4>
+        <h4 class="desc">${data.weather[0].description}</h4>
+        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+        <h1>${data.main.temp} &#176;</h1>
+        <div class="temp_container">
+         <div>
+            <h4 class="title">min</h4>
+            <h4 class="temp">${data.main.temp_min}&#176;</h4>
+         </div>
+         <div>
+            <h4 class="title">max</h4>
+            <h4 class="temp">${data.main.temp_max}&#176;</h4>
+         </div>   
+        </div>
+        `;
+      })
+      .catch(() => {
+        show.innerHTML = `<h3 class="error">City not found</h3>`;
+      });
+  }
+};
+search.addEventListener("click", getWeather);
+window.addEventListener("load", getWeather);
