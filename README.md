@@ -3,8 +3,6 @@
 ## 📌 Description  
 This is a simple and visually appealing weather website built using **HTML**, **CSS**, and **JavaScript**. It fetches real-time weather data using the **OpenWeatherMap API** and displays the current temperature, weather conditions, and location details.
 
-## 🌐 Live Preview  
-[Click here to view live](https://kalyansai15.github.io/Weather-Website/) 
 
 ## 🖥️ Tech Stack  
 - HTML  
